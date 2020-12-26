@@ -38,7 +38,8 @@ jobs:
   # uses: comchangs/action-yarn@e4a1f4800849aa2e73dbc77d872a3c011cdc28d5
         uses: comchangs/action-yarn@v0.1-beta
         with:
-          cmd: install   
+          cmd: install -g yarn
+
       - name: creating Yarn Build
         run:  yarn build
       
