@@ -8,10 +8,18 @@ on:
   push:
     branches: [ master ]
   
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # This is a basic workflow to help you get started with Actions
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name: Auto Actions for Deploy
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+ 
+
+# A workflow run is made up  of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -20,34 +28,28 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2-beta
-        with: 
-          version : 12
-              # Runs a set of commands using the runners shell
-     # - name: git hub action for yarn
-     #   uses: Borales/actions-yarn@2.1.0
-     #   with:
-     #     cmd: install
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: '12'
 
-      - name: action-yarn
-  # You may pin to the exact commit or the version.
-  # uses: comchangs/action-yarn@e4a1f4800849aa2e73dbc77d872a3c011cdc28d5
-        # GitHub Action for Yarn
-      - name: GitHub Action for Yarn
-        uses: Borales/actions-yarn@v2.3.0
-        with:
-      # Yarn command
-          cmd: install
-
-      - name: creating Yarn Build
-        run:  yarn build
+    # GitHub Action for Yarn
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.3.0
+      with:
+    # Yarn command
+       cmd: install
+    # Building Yarn
+    - name: Building Yarn
+      run:  yarn build
       
-      - name: Instaling Surge
-        run:  npm install -g surge
-        
-      - name: Deployin on Surge
-        run: surge ./build newone.suruge.sh 
+    - name: Installing surge 
+      run:  npm install -g surge
+   
+    - name: Deploying on Surge
+      run: surge ./build newone.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+
+        #run: surge ./build newone.suruge.sh 
