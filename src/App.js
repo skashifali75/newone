@@ -1,10 +1,11 @@
 
 import './App.css';
+import Newcomp from 'newcomp';
 
 function App() {
   return (
     <div className="App">
-      Kashif 
+      <Newcomp></Newcomp>
     </div>
   );
 }
