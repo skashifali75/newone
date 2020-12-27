@@ -1,11 +1,11 @@
 
 import './App.css';
-import Newcomp from 'newcomp';
+import Newcomp from './newcomp';
 
 function App() {
   return (
     <div className="App">
-      <Newcomp></Newcomp>
+      <Newcomp />
     </div>
   );
 }
