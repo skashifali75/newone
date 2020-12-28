@@ -1,9 +1,10 @@
 import React from 'react';
-function Newcomp(){
+function Newcomp(props){
    return (
      <div>
-         <h1>Its a line</h1>
-         <h2>It is another line</h2>
+         <h1>Father is {props.fname}</h1>
+         <h1>Elder Son is {props.s1name}</h1>
+         <h1>Younger Son is {props.s2name}</h1>
      </div>
 
    );
